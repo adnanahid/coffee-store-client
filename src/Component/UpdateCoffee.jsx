@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
   const coffeeData = useLoaderData();
-  
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   const handleUpdateCoffee = (event) => {
     event.preventDefault();
@@ -29,13 +29,16 @@ const UpdateCoffee = () => {
     console.log(updateCoffee);
 
     // Send data to the server
-    fetch(`http://localhost:5000/updatecoffees/${coffeeData._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(updateCoffee),
-    })
+    fetch(
+      `https://coffee-store-server-mocha-nine.vercel.app/updatecoffees/${coffeeData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(updateCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -46,7 +49,7 @@ const UpdateCoffee = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/")
+          navigate("/");
         } else {
           Swal.fire({
             icon: "error",

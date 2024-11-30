@@ -18,7 +18,7 @@ const Register = () => {
         const newUser = { name, email, createdAt };
         console.log(user);
         alert("successful");
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-mocha-nine.vercel.app/users", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(newUser),

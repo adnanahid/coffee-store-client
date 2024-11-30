@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const Home = () => {
   const coffeesData = useLoaderData();
+  console.log(coffeesData);
   const [coffees, setCoffees] = useState(coffeesData);
 
   const handleDelete = (_id) => {
@@ -17,9 +18,12 @@ const Home = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/coffees/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-server-mocha-nine.vercel.app/coffees/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -29,8 +33,8 @@ const Home = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              const remain = coffees.filter(coffee => coffee._id !== _id)
-              setCoffees(remain)
+              const remain = coffees.filter((coffee) => coffee._id !== _id);
+              setCoffees(remain);
             }
           });
       }
@@ -42,7 +46,10 @@ const Home = () => {
       <Banner></Banner>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {coffees.map((coffee) => (
-          <div key={coffee._id} className="bg-gray-100 rounded-lg shadow-md flex items-center p-4">
+          <div
+            key={coffee._id}
+            className="bg-gray-100 rounded-lg shadow-md flex items-center p-4"
+          >
             {/* Image */}
             <div className="w-36 h-36 rounded-full overflow-hidden flex-shrink-0">
               <img
@@ -69,7 +76,10 @@ const Home = () => {
               </button>
 
               {/* Edit Button */}
-              <Link to={`/updatecoffees/${coffee._id}`} className="bg-gray-800 p-2 rounded-lg hover:bg-gray-400">
+              <Link
+                to={`/updatecoffees/${coffee._id}`}
+                className="bg-gray-800 p-2 rounded-lg hover:bg-gray-400"
+              >
                 <i className="fa-solid fa-pen-to-square"></i>
               </Link>
 

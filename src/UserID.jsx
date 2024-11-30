@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const UserID = () => {
   const userInfo = useLoaderData();
-//   console.log(userInfo._id);
+  //   console.log(userInfo._id);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -13,11 +13,14 @@ const UserID = () => {
 
     const updateUser = { name, email };
 
-    fetch(`http://localhost:5000/updateUsers/${userInfo.email}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(updateUser),
-    })
+    fetch(
+      `https://coffee-store-server-mocha-nine.vercel.app/updateUsers/${userInfo.email}`,
+      {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(updateUser),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -53,8 +56,8 @@ const UserID = () => {
         />
       </div>
       <div className="form-control mt-6">
-          <button className="btn btn-primary">Update</button>
-        </div>
+        <button className="btn btn-primary">Update</button>
+      </div>
     </form>
   );
 };

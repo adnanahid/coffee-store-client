@@ -23,7 +23,7 @@ const AddCoffee = () => {
     console.log(newCoffee);
 
     //send data to server
-    fetch("http://localhost:5000/coffees", {
+    fetch("https://coffee-store-server-mocha-nine.vercel.app/coffees", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -32,15 +32,15 @@ const AddCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.insertedId){
+        if (data.insertedId) {
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: "COFFEE has been saved",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
-            event.target.reset()
+          event.target.reset();
         }
         console.log(data);
       });
