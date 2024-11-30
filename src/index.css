@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navBg{
+    background-image: url("/src/assets/images/more/15.jpg");
+}
